@@ -1,6 +1,29 @@
 
 
 
+# PIL read 
+
+# https://pillow.readthedocs.io/en/stable/reference/Image.html
+from PIL import Image
+import numpy as np
+im = Image.open('hopper.jpg')
+a = np.asarray(im) # im > np
+
+im = Image.fromarray(a) # np > im 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # multi thread with pbar 
 from time import sleep
 from multiprocessing.pool import ThreadPool
