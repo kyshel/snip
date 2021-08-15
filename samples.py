@@ -1,6 +1,50 @@
 
 
 
+# multi-thread with tqdm template
+
+from tqdm import tqdm 
+from itertools import repeat
+import multiprocessing.dummy as mp 
+from time import sleep
+
+workers = 4
+
+
+def foo(a,b,pbar = None):
+    if 'HALT' in vars() or 'HALT' in globals(): # stop multi-threads
+        if HALT: return 
+
+    sleep(1)
+
+    print(a,b)
+
+
+    if pbar:
+        pbar.update(1)
+    
+    return a+b
+
+
+# make pies
+a_list = range(16)
+b_list = range(16)
+c_list = []
+
+pbar = tqdm(total=len(a_list), position=0, leave=True,
+            desc = f"aa: ", )
+p=mp.Pool(workers)
+c_list = p.starmap(foo, zip(a_list,b_list,repeat(pbar)))
+p.close()
+pbar.close()
+p.join()
+
+print(c_list)
+
+
+
+
+
 # PIL read 
 
 # https://pillow.readthedocs.io/en/stable/reference/Image.html
