@@ -1,6 +1,25 @@
 
 
 
+
+# multi-thread tiny
+
+gb=0
+ids = range(n)
+results = ThreadPool(workers).imap(self.load_pix,  ids  )  
+pbar = tqdm(enumerate(results), total=n, mininterval=1,)
+for i, x in pbar:
+    self.pixs[i] = x  
+    # gb += self.pixs[i].nbytes # sys.getsizeof(b.storage())
+    gb +=  sys.getsizeof(self.pixs[i].storage())
+    pbar.desc = f'{prefix}Caching images ({gb / 1E9:.1f}GB)'
+pbar.close()
+
+
+
+
+
+
 # multi-thread with tqdm template
 
 from tqdm import tqdm 
