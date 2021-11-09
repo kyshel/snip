@@ -1,4 +1,12 @@
 
+# loop list
+for index,value in enumerate(list_a):
+    pass
+
+# loop dict
+for key,value in d.items():
+    pass
+
 
 # .csv to list 
 # v1 
